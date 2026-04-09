@@ -43,6 +43,20 @@
             #binding-cells = <0>;
             bindings = <&caps_word>, <&kp LS(CAPS)>;
         };
+        chi_ht: chi_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&to_chi>;
+        };
+        eng_ht: eng_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&to_eng>;
+        };
         comma_semi: comma_semi {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -84,7 +98,7 @@
         compatible = "zmk,keymap";
 
         colemak_layer {
-            display-name = "COLEMAK";
+            display-name = "colemak";
             // ---------------------------------------------------------------------
             // |  Q  |  W  |  F  |  P  |  G  ||  J  |  L   |   U   |   Y   | ' _ " |
             // |  A  |  R  |  S  |  T  |  D  ||  H  |  N   |   E   |   I   |   O   |
@@ -93,12 +107,12 @@
                 &kp Q &kp W &kp F &kp P &kp G   &kp J &kp L &kp U       &kp Y      &sqt_dqt
                 &kp A &kp R &kp S &kp T &kp D   &kp H &kp N &kp E       &kp I      &kp O
                 &kp Z &kp X &kp C &kp V &kp B   &kp K &kp M &comma_semi &dot_colon &fslh_qmark
-         &to_chi &lt LOWER BSPC &mt LSHFT ESC   &mt RCTL RET &lt UPPER SPACE &to_eng
+        &chi_ht LALT 0 &lt LOWER BSPC &mt LSHFT ESC   &mt RCTL RET &lt UPPER SPACE &eng_ht RGUI 0
             >;
         };
 
         qwerty_layer {
-            display-name = "QWERTY";
+            display-name = "qwerty";
             // ---------------------------------------------------------------------
             // |  Q  |  W  |  E  |  R  |  T  ||  Y  |  U   |   I   |   O   |   P   |
             // |  A  |  S  |  D  |  F  |  G  ||  H  |  J   |   K   |   L   | ' _ " |
@@ -112,7 +126,7 @@
         };
 
         lower_layer {
-            display-name = "NUM_SYM";
+            display-name = "lower";
             // ------------------------------------------------------------------------
             // |  <  |  [  |  (   |  {   |  `  ||  *  | 7 _ & | 8 _ * | 9 _ ( | \ _ |  |
             // | GUI | ALT | CTRL | SHFT |  =  ||  +  | 4 _ $ | 5 _ % | 6 _ ^ | - _ MG |
@@ -126,7 +140,7 @@
         };
 
         upper_layer {
-            display-name = "SYMBOL";
+            display-name = "upper";
             // -------------------------------------------------------------
             // |   F1    | F2  |  F3  |  F4  |  F5   || G+V |  G+Z  |  UP  |  TAB  |   BSPC   |
             // |   GUI   | ALT | CTRL | SHFT | G+SPC || G+C | LEFT  | DOWN | RIGHT | RET _ MG |
@@ -140,7 +154,7 @@
         };
 
         magic_layer {
-            display-name = "MAGIC";
+            display-name = "magic";
             bindings = <
                 &rgb_ug RGB_TOG &rgb_ug RGB_SPI &rgb_ug RGB_HUI &rgb_ug RGB_SAI &bootloader     &bootloader  &kp C_PP    &kp C_VOL_UP  &kp C_MUTE  &rgb_ug RGB_BRI
                 &rgb_ug RGB_EFF &rgb_ug RGB_SPD &rgb_ug RGB_HUD &rgb_ug RGB_SAD &sys_reset      &sys_reset   &kp C_PREV  &kp C_VOL_DN  &kp C_NEXT  &rgb_ug RGB_BRD
