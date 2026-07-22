@@ -35,6 +35,18 @@
             #binding-cells = <0>;
             bindings = <&kp LC(SPACE)>, <&to COLEMAK>;
         };
+
+        copy_mode: copy_mode_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp GRAVE>, <&kp LBKT>;
+        };
+
+        cycle_pane: cycle_pane_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp GRAVE>, <&kp TAB>;
+        };
     };
 
     behaviors {
@@ -127,7 +139,7 @@
 
         lower_layer {
             display-name = "lower";
-            // ------------------------------------------------------------------------
+            // -------------------------------------------------------------------------
             // |  <  |  [  |  (   |  {   |  `  ||  *  | 7 _ & | 8 _ * | 9 _ ( | \ _ |  |
             // | GUI | ALT | CTRL | SHFT |  =  ||  +  | 4 _ $ | 5 _ % | 6 _ ^ | - _ MG |
             // |  >  |  ]  |  )   |  }   |  ~  ||  0  | 1 _ ! | 2 _ @ | 3 _ # | / _ ?  |
@@ -141,15 +153,15 @@
 
         upper_layer {
             display-name = "upper";
-            // -------------------------------------------------------------
-            // |   F1    | F2  |  F3  |  F4  |  F5   || G+V |  G+Z  |  UP  |  TAB  |   BSPC   |
-            // |   GUI   | ALT | CTRL | SHFT | G+SPC || G+C | LEFT  | DOWN | RIGHT | RET _ MG |
-            // | F6 _ MG | F7  |  F8  |  F9  |  F10  || G+X | G+S+Z | ESC  | CAPS  |   DEL    |
+            // ------------------------------------------------------------------------------------
+            // |   F1    | F2  |  F3  |  F4  |  F5    || G+SPC | PG_UP |   UP  |  TAB  |   BSPC   |
+            // |   GUI   | ALT | CTRL | SHFT | REPEAT || HOME  | LEFT  |  DOWN | RIGHT | END _ MG |
+            // | F6 _ MG | F7  |  F8  |  F9  |  F10   ||  `+[  | PG_DN | `+TAB |  G+`  |   DEL    |
             bindings = <
-                &kp F1       &kp F2   &kp F3    &kp F4    &kp F5          &kp LG(V) &kp LG(Z) &kp UP   &kp TAB   &kp BSPC
-                &sk LGUI     &sk LALT &sk LCTRL &sk LSHFT &kp LG(SPACE)   &kp LG(C) &kp LEFT  &kp DOWN &kp RIGHT &lt MAGIC RET
-                &lt MAGIC F6 &kp F7   &kp F8    &kp F9    &kp F10         &kp LG(X) &kp HOME  &kp ESC  &kp END   &kp DEL
-                                                 &trans  &trans  &trans   &trans  &trans  &eng_ht RGUI 0
+                &kp F1       &kp F2   &kp F3    &kp F4    &kp F5        &kp LG(SPACE) &kp PG_UP &kp UP      &kp TAB       &kp BSPC
+                &sk LGUI     &sk LALT &sk LCTRL &sk LSHFT &key_repeat   &kp HOME      &kp LEFT  &kp DOWN    &kp RIGHT     &lt MAGIC END
+                &lt MAGIC F6 &kp F7   &kp F8    &kp F9    &kp F10       &copy_mode    &kp PG_DN &cycle_pane &kp LG(GRAVE) &kp DEL
+                                               &trans  &trans  &trans   &trans  &trans  &eng_ht RGUI 0
             >;
         };
 
